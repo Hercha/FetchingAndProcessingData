@@ -1,5 +1,7 @@
 <?php
 
+header('Content-type: application/json');
+
 $names_array = ['Mook', 'Sarah', 'Maria'];
 
 $i = 1;
@@ -19,6 +21,7 @@ libxml_use_internal_errors(true);
 $html_page->loadHTML($output);
 libxml_clear_errors();
 
+$people = [];
 $figures = $html_page->getElementsByTagName('figure');
 
 foreach($figures as $figure) {
@@ -30,12 +33,13 @@ foreach($figures as $figure) {
     $profile_link = $figure->getElementsByTagName('a')[0]->getAttribute('href');
 
     //echo '<a href="' . $profile_link . '" title="' . $name . '"><img src="' . $img_src . '"></a>';
-    echo json_encode([
-      'profile_link => $profile_link',
-      'name' => $name,
-    ]);
+
+    $people[] = compact('profile_link', 'name', 'img_src');
+
   }
 
   //var_dump($profile_link);
   //var_dump($img_src);
 }
+
+echo json_encode($people);
