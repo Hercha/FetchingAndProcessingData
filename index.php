@@ -1,8 +1,8 @@
 <?php
 
-for ($i = 1; $i <= 10; $i++) {
+for ($i = 1; $i <= 70; $i++) {
 
-  $names_array = ['Mook', 'Sarah'];
+  $names_array = ['Mook', 'Sarah', 'Maria'];
 
   $ch = curl_init('https://badoo.com/en/dating/united-states/new-york/new-york/girls/page-' . $i . '/age-20-30/');
   //$ch = curl_init('http://php.net/manual/en/book.curl.php');
