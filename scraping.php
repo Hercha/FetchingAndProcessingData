@@ -4,9 +4,7 @@ header('Content-type: application/json');
 
 $names_array = ['Mook', 'Sarah', 'Maria'];
 
-$i = 1;
-
-$ch = curl_init('https://badoo.com/en/dating/united-states/new-york/new-york/girls/page-' . $i . '/age-20-30/');
+$ch = curl_init('https://badoo.com/en/dating/united-states/new-york/new-york/girls/page-' . $_GET['pageNumber'] . '/age-20-30/');
 //$ch = curl_init('http://php.net/manual/en/book.curl.php');
 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
