@@ -1,16 +1,17 @@
 $(function() {
 
-  let inputLocation, inputName, inputAgeRange, inputSex;
+  let inputLocation, inputNames, inputAgeRange, inputSex;
 
   $("#searchForm").on('submit', function(event) {
     event.preventDefault();
+    $('#badoo-search').empty();
 
     inputLocation = $("input[name=location]").val();
     inputNames = $("input[name=names]").val();
     inputAgeRange = $("input[name=ageRange]").val();
     inputSex = $("input[name=sex]").val();
 
-    for (let pageNumber = 1; pageNumber <= 10; pageNumber++) {
+    for (let pageNumber = 1; pageNumber <= 100; pageNumber++) {
       $.ajax({
         type: "POST",
         url: "scraping.php",

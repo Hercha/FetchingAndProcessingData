@@ -2,7 +2,7 @@
 
 header('Content-type: application/json');
 
-$names_array = ['Mia', 'Monica', 'Susie'];
+$names_array = array_map('trim', explode(',', $_POST['names']));
 
 $ch = curl_init('https://badoo.com/en/dating/' . $_POST['location'] . '/' . $_POST['sex'] . '/page-' . $_POST['pageNumber'] . '/age-' . $_POST['ageRange'] . '/');
 //$ch = curl_init('http://php.net/manual/en/book.curl.php');
