@@ -19,12 +19,17 @@ libxml_use_internal_errors(true);
 $html_page->loadHTML($output);
 libxml_clear_errors();
 
-$people = [];
+$output = array_fill_keys(['people', 'error'], []);
+
+$all_photos_counter = 0;
+
 $figures = $html_page->getElementsByTagName('figure');
 
 foreach($figures as $figure) {
 
   $name = $figure->getElementsByTagName('span')[1]->nodeValue;
+  $photo_counter = $figure->getElementsByTagName('span')[0]->nodeValue;
+  $all_photos_counter += $photo_counter;
 
   if (in_array($name, $names_array)) {
     $img_src = $figure->getElementsByTagName('img')[0]->getAttribute('src');
@@ -32,7 +37,7 @@ foreach($figures as $figure) {
 
     //echo '<a href="' . $profile_link . '" title="' . $name . '"><img src="' . $img_src . '"></a>';
 
-    $people[] = compact('profile_link', 'name', 'img_src');
+    $output['people'][] = compact('profile_link', 'name', 'img_src');
 
   }
 
@@ -40,4 +45,11 @@ foreach($figures as $figure) {
   //var_dump($img_src);
 }
 
-echo json_encode($people);
+if($all_photos_counter === 0) {
+  $output['error'] = [
+    'code' => 404,
+    'msg' => 'No photos'
+  ];
+}
+
+echo json_encode($output);
