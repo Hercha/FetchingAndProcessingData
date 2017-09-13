@@ -1,0 +1,12 @@
+[type="checkbox"]+label {
+  padding-left: 24px;
+  margin-right: 10px;
+}
+
+#age-range-label {
+  position: static;
+}
+
+#age-range-slider {
+  margin: 10px 0 30px 0;
+}

@@ -4,40 +4,64 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nouislider.css">
+
   <title>B Advanced Search</title>
 </head>
 <body>
 
-  <form id="searchForm" action="">
+<div class="container center-align">
+  <div class="row">
+    <div class="col m6 s12 offset-m3">
+      <form id="badoo-search-form" action="">
 
-    <div>
-      <label for="location">Location:</label>
-      <input id="location" type="text" name="location" value="united-states/new-york/new-york" placeholder="Copy location from B">
+        <div class="input-field">
+          <label for="location">Location: (copied from Badoo)</label>
+          <input id="location" type="text" name="location" value="united-states/new-york/new-york">
+        </div>
+
+        <div class="input-field">
+          <label for="names">Names (separated by commas):</label>
+          <input id="names" type="text" name="names" value="Mia, Sarah, Rica, Tianaa">
+        </div>
+
+        <div class="input-field">
+          <label id="age-range-label">Age range:</label>
+          <div id="age-range-slider"></div>
+        </div>
+
+
+        <div>
+          <div>
+            <label>Sex:</label>
+          </div>
+          <input id="checkbox-guys" type="checkbox" name="sex" value="guys">
+          <label for="checkbox-guys">Guys</label>
+          <input id="checkbox-girls" type="checkbox" name="sex" value="girls">
+          <label for="checkbox-girls">Girls</label>
+        </div>
+
+        <p>&nbsp;</p>
+
+        <div class="center-align">
+          <button type="submit" class="btn waves-effect waves-light">Start search</button>
+          <button type="button" class="btn waves-effect waves-light" id="stopSearchingButton">Stop searching</button>
+        </div>
+
+      </form>
     </div>
-
-    <div>
-      <label for="names">Names:</label>
-      <input id="names" type="text" name="names" value="Mia, Sarah, Rica, Tianaa" placeholder="Type names separated by commas">
-    </div>
-
-    <div>
-      <label for="ageRange">Age range:</label>
-      <input id="ageRange" type="text" name="ageRange" value="20-30" placeholder="Specify age range">
-    </div>
-
-    <div>
-      <label for="sex">Sex</label>
-      <input id="sex" type="text" name="sex" value="girls" placeholder="Specify sex">
-    </div>
-
-    <button type="submit">Start search</button>
-    <button type="button" id="stopSearchingButton">Stop searching</button>
-
-  </form>
-
-  <div id="badoo-search"></div>
+  </div>
+</div>
+<div id="badoo-search-results"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script src="nouislider.js"></script>
 <script src="main.js"></script>
 </body>
 </html>

@@ -2,10 +2,25 @@ $(function() {
 
   let inputLocation, inputNames, inputAgeRange, inputSex, pageNumber, stopSearching = false;
 
-  $("#searchForm").on('submit', function(event) {
+  var slider = document.getElementById('age-range-slider');
+  noUiSlider.create(slider, {
+   start: [20, 50],
+   connect: true,
+   step: 1,
+   orientation: 'horizontal', // 'horizontal' or 'vertical'
+   range: {
+     'min': 18,
+     'max': 80
+   },
+   format: wNumb({
+     decimals: 0
+   })
+  });
+
+  $("#badoo-search-form").on('submit', function(event) {
     event.preventDefault();
 
-    $('#badoo-search').empty();
+    $('#badoo-search-results').empty();
 
     stopSearching = false;
     pageNumber = 1;
@@ -13,7 +28,18 @@ $(function() {
     inputLocation = $("input[name=location]").val();
     inputNames = $("input[name=names]").val();
     inputAgeRange = $("input[name=ageRange]").val();
-    inputSex = $("input[name=sex]").val();
+
+    inputSex = [];
+    $("input[name=sex]:checked").each(function() {
+        inputSex.push($(this).val());
+    });
+
+    slider.noUiSlider.on('update', function(){
+       inputAgeRange = slider.noUiSlider.get()[0] + '-' + slider.noUiSlider.get()[1];
+       console.log(inputAgeRange);
+    });
+
+    console.log(inputSex)
 
     doSearch();
 
@@ -39,7 +65,7 @@ $(function() {
 
       data.people.forEach(function(value) {
         let htmlCode = '<a href="' + value.profile_link + '" title="' + value.name + '" target="_blank"><img src="' + value.img_src + '"></a>'
-        $("#badoo-search").append(htmlCode);
+        $("#badoo-search-results").append(htmlCode);
       });
 
       console.log(pageNumber);
