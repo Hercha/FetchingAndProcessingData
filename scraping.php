@@ -38,13 +38,13 @@ foreach($figures as $figure) {
   $photo_counter = $figure->getElementsByTagName('span')[0]->nodeValue;
   $all_photos_counter += $photo_counter;
 
-  if (in_array($name, $names_array)) {
+  if (in_array($name, $names_array) || empty($_POST['names'])) {
     $img_src = $figure->getElementsByTagName('img')[0]->getAttribute('src');
     $profile_link = $figure->getElementsByTagName('a')[0]->getAttribute('href');
 
     //echo '<a href="' . $profile_link . '" title="' . $name . '"><img src="' . $img_src . '"></a>';
 
-    $output['people'][] = compact('profile_link', 'name', 'img_src');
+    $output['people'][] = compact('profile_link', 'name', 'img_src', 'photo_counter');
 
   }
 

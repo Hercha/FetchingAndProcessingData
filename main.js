@@ -64,7 +64,7 @@ $(function() {
     }).done(function(data) {
 
       data.people.forEach(function(value) {
-        let htmlCode = '<a href="' + value.profile_link + '" title="' + value.name + '" target="_blank"><img src="' + value.img_src + '"></a>'
+        let htmlCode = '<div class="col m3 s6"><div class="card"><div class="card-image"><a href="' + value.profile_link + '" title="' + value.name + '" target="_blank"><img src="' + value.img_src + '"><span class="card-title">' + value.name + '(' + value.photo_counter + ')</span></a></div></div></div>'
         $("#badoo-search-results").append(htmlCode);
       });
 
